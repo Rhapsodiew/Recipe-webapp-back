@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -11,15 +12,8 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $recipes = Recipe::orderBy('id', 'desc')->get();
+        return response()->json($recipes);
     }
 
     /**
@@ -27,7 +21,10 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $recipe = new Recipe;
+        $recipe->name = $request->name;
+        $recipe->save();
+        return response()->json($recipe);
     }
 
     /**
@@ -35,15 +32,8 @@ class RecipeController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $recipe = Recipe::findOrFail($id);
+        return response()->json($recipe);
     }
 
     /**
@@ -51,7 +41,10 @@ class RecipeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $recipe = Recipe::findOrFail($id);
+        $recipe->name = $request->name;
+        $recipe->save();
+        return response()->json($recipe);
     }
 
     /**
@@ -59,6 +52,8 @@ class RecipeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $recipe = Recipe::findOrFail($id);
+        $recipe->delete();
+        return response()->json($recipe);
     }
 }
