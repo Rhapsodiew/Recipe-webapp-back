@@ -18,6 +18,15 @@
                         </li>
                     </ul>
                 </td>
+                <td style="text-align: center;">
+                    <v-btn icon size="small" color="error" variant="tonal"
+                    @click="$emit('deleteRecipe', recipe)"
+                    >
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+
+                </td>
+
             </tr>
         </tbody>
     </v-table>
