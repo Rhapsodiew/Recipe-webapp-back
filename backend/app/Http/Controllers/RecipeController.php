@@ -22,17 +22,16 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        $recipe = new Recipe;
-        $recipe->name = $request->name;
-
-
         if ($request->has('ingredients')) {
+            $recipe = new Recipe;
+            $recipe->name = $request->name;
+            $recipe->save();
             foreach($request->ingredients as $item) {
                 // Check if exist, if not -> create ingredient
                 $ingredient = Ingredient::where('name', $item['name'])->first();
                 if (!$ingredient) {
                     $ingredient = new Ingredient;
-                    $ingredient->name = $request->name;
+                    $ingredient->name = $item['name'];
                     $ingredient->save();
                 }
 
