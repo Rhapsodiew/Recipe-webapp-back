@@ -5,11 +5,11 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\IngredientController;
 
 Route::get('/recipes', [RecipeController::class, 'index']);
+Route::get('/recipes/search', [RecipeController::class, 'search']);
 Route::post('/recipes', [RecipeController::class, 'store']);
 Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 Route::put('/recipes/{id}', [RecipeController::class, 'update']);
 Route::delete('/recipes/{id}', [RecipeController::class, 'destroy']);
-Route::get('/recipes/filter', [RecipeController::class, 'filter']);
 
 Route::get('/ingredients', [IngredientController::class, 'index']);
 Route::post('/ingredients', [IngredientController::class, 'store']);

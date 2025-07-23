@@ -24,7 +24,6 @@ class RecipeController extends Controller
     {
         $recipe = new Recipe;
         $recipe->name = $request->name;
-        $recipe->save(); 
 
 
         if ($request->has('ingredients')) {
@@ -43,9 +42,10 @@ class RecipeController extends Controller
                 ]);
             }
         } else {
-            $message = "error : Ingredients missing.";
+            $message = ['err' => 'No ingredients'];
             return response()->json($message, 400);
         }
+        $recipe->save(); 
         return response()->json($recipe->load('ingredients'), 201);
     }
 
@@ -102,15 +102,17 @@ class RecipeController extends Controller
 
     /**
      * Filter recipes based on what ingredient is used.
-     * Not working.
      */
-    public function filter(Request $request)
-    {   
+    public function search(Request $request)
+    {
         $ingredient_filter = $request->ingredient;
-        $recipes = Recipe::with('ingredients')
-        ->whereHas('ingredients', function (Builder $query) use ($ingredient_filter) {
+        
+        if (!$ingredient_filter) {
+            return response()->json(['message' => 'Ingredient filter is required'], 400);
+        }
+        $recipes = Recipe::whereHas('ingredients', function ($query) use ($ingredient_filter) {
             $query->where('name', $ingredient_filter);
         })->get();
-        return response()->json($recipe, 200);
+        return response()->json($recipes->load('ingredients'), 200);
     }
 }
