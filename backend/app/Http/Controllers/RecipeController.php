@@ -36,8 +36,8 @@ class RecipeController extends Controller
                 }
 
                 $recipe->ingredients()->attach($ingredient->id, [
-                    'quantity' => $item['quantity'],
-                    'unit' => $item['unit']
+                    'quantity' => $item['quantity'] ?? null,
+                    'unit' => $item['unit'] ?? null
                 ]);
             }
         } else {
@@ -79,8 +79,8 @@ class RecipeController extends Controller
                 }
 
                 $ingredientsData[$ingredient->id] = [
-                    'quantity' => $item['quantity'],
-                    'unit' => $item['unit']
+                    'quantity' => $item['quantity'] ?? null,
+                    'unit' => $item['unit'] ?? null
                 ];
             }
 

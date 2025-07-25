@@ -7,11 +7,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="recipe in recipes" :key="recipe.id"
-            @click="$emit('updateRecipe', recipe)"
-            style="cursor: pointer;">
-                <td>{{ recipe.name }}</td>
-                <td>
+            <tr v-for="recipe in recipes" :key="recipe.id">
+                <td
+                    @click="$emit('updateRecipe', recipe)"
+                    style="cursor: pointer;"
+                >{{ recipe.name }}</td>
+                <td
+                    @click="$emit('updateRecipe', recipe)"
+                    style="cursor: pointer;">
                     <ul>
                         <li v-for="ingredient in recipe.ingredients" :key="ingredient.id">
                             {{ ingredient.name }}
@@ -24,9 +27,7 @@
                     >
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
-
                 </td>
-
             </tr>
         </tbody>
     </v-table>
