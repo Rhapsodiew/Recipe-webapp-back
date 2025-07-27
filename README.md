@@ -11,8 +11,8 @@ Back-end de l'application de gestion de recettes.
 ## Endpoints de l'api
 
 
-| Methode  | Endpoint | Données requise | Description |
-| ------------- | ------------- |
+| Methode | Endpoint | Données requise | Description |
+| ------- | -------- | --------------- | ----------- |
 | GET | /api/recipes  | NO | Récupère toute les recettes |
 | GET | /api/recipe/{id} | NO |  Détail d'une recette |
 | GET | /api/recipes/search | { "ingredient" : "Lait" } | Filtre les recettes par rapport à un ingrédient |
