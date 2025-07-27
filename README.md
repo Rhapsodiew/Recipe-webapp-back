@@ -6,10 +6,9 @@ Back-end de l'application de gestion de recettes.
 
 - Laravel
 - PHP
-- PostgreSQL
+- PostgreSQL ([shéma de la DB](https://github.com/Rhapsodiew/Recipe-webapp-back/blob/main/doc/shema_db.pdf))
 
 ## Endpoints de l'api
-
 
 | Methode | Endpoint | Données requise | Description |
 | ------- | -------- | --------------- | ----------- |
